@@ -1,19 +1,13 @@
-using NaughtyAttributes;
 using UnityEngine;
 
 public class Rulebook : MonoBehaviour
 {
     [SerializeField] private WindowsContainer _container;
+    [SerializeField] private RulebookWindow _window;
 
-    [Button]
-    private void ShowPicker()
+    private void OnEnable()
     {
-        _container.Change<ResponsesPickerWindow>();
-    }
-
-    [Button]
-    private void ReturnBack()
-    {
-        _container.Back();
+        _container.Init();
+        _window.Show();
     }
 }
