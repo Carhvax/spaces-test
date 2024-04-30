@@ -23,7 +23,11 @@ public class BlockItem : ListItem {
 
         if(block.Condition != null)
         {
-            
+            /*var action = Instantiate(_actionPrefab);
+
+            action.Fill(repository, block.Condition);
+
+            _actions.Add(action);*/
         }
 
         block.Actions.Each(preset =>

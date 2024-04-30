@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ValueReferences", menuName = "Repositories/Library/ValueReferences")]
-public class ValueReferences : ScriptableObject
+public class ValueReferences : ScriptableObject, IEnumerable<ValueReference>
 {
     [SerializeField] private ValueReference[] _values;
 
@@ -12,5 +14,9 @@ public class ValueReferences : ScriptableObject
 
         return value != null;
     }
+
+    public IEnumerator<ValueReference> GetEnumerator() => _values.ToList().GetEnumerator();
+    
+    IEnumerator IEnumerable.GetEnumerator() => _values.GetEnumerator();
 
 }

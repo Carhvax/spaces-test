@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MethodReferences", menuName = "Repositories/Library/MethodReferences")]
-public class MethodReferences : ScriptableObject
+public class MethodReferences : ScriptableObject, IEnumerable<MethodReference>
 {
     [SerializeField] private MethodReference[] _methods;
 
@@ -12,4 +14,8 @@ public class MethodReferences : ScriptableObject
 
         return method != null;
     }
+
+    public IEnumerator<MethodReference> GetEnumerator() => _methods.ToList().GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => _methods.GetEnumerator();
 }

@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RulebookWindow : Window
 {
     [SerializeField] private BlockList _blocks;
     [SerializeField] private RulebookSheets _rulebook;
     [SerializeField] private RulebookRepository _repository;
+    [SerializeField] private Button _addBlockButton;
 
     [Space]
     [SerializeField] private BlockItem _blockPrefab;
@@ -16,6 +18,14 @@ public class RulebookWindow : Window
             var block = Instantiate(_blockPrefab);
 
             block.OnInitialize(i, rule, _repository);
+
+            _blocks.Add(block);
+        });
+
+        _addBlockButton.onClick.AddListener(() => {
+            var block = Instantiate(_blockPrefab);
+
+            //block.OnInitialize(i, rule, _repository);
 
             _blocks.Add(block);
         });

@@ -25,4 +25,13 @@ public class ActionItem : ReferenceItem
         }
         
     }
+
+    public void Fill(RulebookRepository repository, MethodReference reference)
+    {
+        if (repository.TryGetMethod(reference.Type, out var method))
+        {
+            var instance = Instantiate(_fieldPrefab, _content);
+            instance.Init(method.Icon, reference.Type.ToString(), "");
+        }
+    }
 }

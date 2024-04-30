@@ -3,12 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ReferenceRepository", menuName = "Repositories/ReferenceRepository")]
 public class RulebookRepository : ScriptableObject
 {
-    [SerializeField] private ValueReferences _values;
-    [SerializeField] private MethodReferences _methods;
+    public ValueReferences Values;
+    public MethodReferences Methods;
 
-    public bool TryGetMethod(MethodType type, out MethodReference method) => _methods.TryGetMethod(type, out method);
+    public bool TryGetMethod(MethodType type, out MethodReference method) => Methods.TryGetMethod(type, out method);
 
-    public bool TryGetValue(ValueType type, out ValueReference value) => _values.TryGetValue(type, out value);
+    public bool TryGetValue(ValueType type, out ValueReference value) => Values.TryGetValue(type, out value);
 }
 
 
