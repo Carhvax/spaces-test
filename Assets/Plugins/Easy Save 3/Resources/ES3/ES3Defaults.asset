@@ -29,12 +29,12 @@ MonoBehaviour:
     referenceMode: 2
     serializationDepthLimit: 64
     assemblyNames:
-    - Assembly-CSharp
     - NaughtyAttributes.Test
     - Zenject
     - UniRx
     - Assembly-CSharp-firstpass
     - NaughtyAttributes.Core
+    - Assembly-CSharp
     - NaughtyAttributes.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
