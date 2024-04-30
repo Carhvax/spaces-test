@@ -32,6 +32,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - NaughtyAttributes.Test
     - Zenject
+    - UniRx
     - Assembly-CSharp-firstpass
     - NaughtyAttributes.Core
     - NaughtyAttributes.Editor
