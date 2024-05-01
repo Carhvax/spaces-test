@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,7 @@ public class RulebookWindow : Window
         _addBlockButton.onClick.AddListener(() => {
             var block = Instantiate(_blockPrefab);
 
-            //block.OnInitialize(i, rule, _repository);
+            block.OnInitialize(_rulebook.Count(), null, _repository);
 
             _blocks.Add(block);
         });

@@ -11,6 +11,7 @@ public class ActionsPickerWindow : PickerWindow<ActionItem> {
         {
             var instance = Instantiate(_actionPrefab);
             instance.Fill(_repository, m);
+            instance.OnPickItem(PickUp);
             _actions.Add(instance);
         });
     }

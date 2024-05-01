@@ -1,9 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ActionItem : ReferenceItem
+public class ActionItem : ReferenceItem, IPointerDownHandler
 {
     [SerializeField] private ItemField _fieldPrefab;
     [SerializeField] private Transform _content;
+    private Action<ActionItem> _onPickItem;
+
+    public MethodReference Reference { get; private set; }
 
     public void Fill(RulebookRepository repository, RuleMethod preset)
     {
@@ -26,12 +31,24 @@ public class ActionItem : ReferenceItem
         
     }
 
+    public void OnPickItem(Action<ActionItem> pickUp)
+    {
+        _onPickItem = pickUp;
+    }
+
     public void Fill(RulebookRepository repository, MethodReference reference)
     {
+        Reference = reference;
+
         if (repository.TryGetMethod(reference.Type, out var method))
         {
             var instance = Instantiate(_fieldPrefab, _content);
             instance.Init(method.Icon, reference.Type.ToString(), "");
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _onPickItem?.Invoke(this);
     }
 }

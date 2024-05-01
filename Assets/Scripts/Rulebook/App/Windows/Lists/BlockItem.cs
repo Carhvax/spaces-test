@@ -17,9 +17,15 @@ public class BlockItem : ListItem {
     [SerializeField] private ItemField _fieldPrefab;
     [SerializeField] private ActionItem _actionPrefab;
 
+    private RulebookRepository _repository;
+
     public void OnInitialize(int index, RulebookBlock block, RulebookRepository repository)
     {
+        _repository = repository;
+
         ChangeIndex(index);
+
+        if (block == null) return;
 
         if(block.Condition != null)
         {
@@ -34,7 +40,7 @@ public class BlockItem : ListItem {
         {
             var action = Instantiate(_actionPrefab);
 
-            action.Fill(repository, preset);
+            action.Fill(_repository, preset);
 
             _actions.Add(action);
         });
@@ -57,8 +63,17 @@ public class BlockItem : ListItem {
 
     private void OnRequestAction()
     {
-        WindowsContainer.Pick<ActionItem>(item => { 
+        WindowsContainer.Pick<ActionItem>(item => {
+            if(item && item.Reference)
+            {
+                var action = Instantiate(_actionPrefab);
 
+                action.Fill(_repository, item.Reference);
+
+                _actions.Add(action);
+
+                _actions.ForceLayout();
+            }
         });
     }
 
